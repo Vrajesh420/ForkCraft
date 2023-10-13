@@ -1,0 +1,93 @@
+﻿@model ForkCraft.Models.ForkMaterialViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<style>
+    body {
+        background-color: darkred;
+    }
+
+h1 {
+        color: aqua;
+        text-align: center;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    p,td,th {
+        color: aqua;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+</style>
+<h1>Index</h1>
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-controller="Forks" asp-action="Index">
+    <p>
+        <select asp-for="ForkMaterial" asp-items="Model.Material">
+            <option value="">All</option>
+        </select>
+        Type: <input type="text" name="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Forks[0].Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Forks[0].Material)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Forks[0].Finishing)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Forks[0].HandleDesign)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Forks[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Forks[0].Size)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Forks)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Material)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Finishing)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HandleDesign)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Size)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
